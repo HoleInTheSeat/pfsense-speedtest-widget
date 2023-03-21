@@ -47,15 +47,20 @@ if ($_REQUEST['ajax']) {
 		<td><h4 id="speedtest-upload">N/A</h4></td>
 	</tr>
 	<tr>
-		<td>ISP</td>
-		<td colspan="2" id="speedtest-isp">N/A</td>
+		<td><h5 style="font-size: 0.8em;" >Host:</h4></td>
+		<td><h5 id="speedtest-host" style="font-size: 0.8em;" >N/A</h4></td>
+		<td><h5 id="speedtest-location" style="font-size: 0.8em;" >N/A</h4></td>
 	</tr>
 	<tr>
-		<td>Host</td>
-		<td colspan="2" id="speedtest-host">N/A</td>
+		<td><h5 style="font-size: 0.8em;" >ISP:</h4></td>
+		<td><h5 id="speedtest-isp" style="font-size: 0.8em;" >N/A</h4></td>
+		<td><h5 id="speedtest-wanip" style="font-size: 0.8em;" >N/A</h4></td>
 	</tr>
 	<tr>
 		<td colspan="3" id="speedtest-ts" style="font-size: 0.8em;">&nbsp;</td>
+	</tr>
+	<tr>
+		<td colspan="3" href="speedtest-url" id="speedtest-url" style="font-size: 0.8em;">&nbsp;</td>
 	</tr>
 </table>
 <a id="updspeed" href="#" class="fa fa-refresh" style="display: none;"></a>
@@ -69,7 +74,10 @@ function update_result(results) {
     	$("#speedtest-upload").html((results.upload.bandwidth / 125000).toFixed(2) + "<small> Mbps</small>");
     	$("#speedtest-upload").html((results.upload.bandwidth / 125000).toFixed(2) + "<small> Mbps</small>");
     	$("#speedtest-isp").html(results.isp);
+    	$("#speedtest-wanip").html(results.interface.externalIp);
     	$("#speedtest-host").html(results.server.name);
+    	$("#speedtest-location").html(results.server.location);
+    	$("#speedtest-url").html("<p> Results: <a href=" + (results.result.url) + " target='_blank' >" + (results.result.id) + "</a></p>");
     } else {
     	$("#speedtest-ts").html("Speedtest failed");
     	$("#speedtest-ping").html("N/A");
@@ -77,7 +85,10 @@ function update_result(results) {
     	$("#speedtest-upload").html("N/A");
     	$("#speedtest-upload").html("N/A");
     	$("#speedtest-isp").html("N/A");
+    	$("#speedtest-wanip").html("N/A");
     	$("#speedtest-host").html("N/A");
+    	$("#speedtest-location").html("N/A");
+    	$("#speedtest-url").html("N/A");
     }
 }
 
