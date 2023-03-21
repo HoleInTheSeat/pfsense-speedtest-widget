@@ -1,4 +1,5 @@
-# Speedtest dashboard widget for pfSense community Version 2.6.0
+# Speedtest dashboard widget for pfSense
+Tested on Community Version community Version 2.6.0 and Pfsense+ 23.01
 
 # Install
 
