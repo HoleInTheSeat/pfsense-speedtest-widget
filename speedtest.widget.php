@@ -21,7 +21,7 @@
 require_once("guiconfig.inc");
 
 if ($_REQUEST['ajax']) { 
-    $results = shell_exec("speedtest --json");
+    $results = shell_exec("speedtest -f json");
     if(($results !== null) && (json_decode($results) !== null)) {
         $config['widgets']['speedtest_result'] = $results;
         write_config("Save speedtest results");
@@ -64,11 +64,11 @@ function update_result(results) {
     if(results != null) {
     	var date = new Date(results.timestamp);
     	$("#speedtest-ts").html(date);
-    	$("#speedtest-ping").html(results.ping.toFixed(2) + "<small> ms</small>");
-    	$("#speedtest-download").html((results.download / 1000000).toFixed(2) + "<small> Mbps</small>");
-    	$("#speedtest-upload").html((results.upload / 1000000).toFixed(2) + "<small> Mbps</small>");
-    	$("#speedtest-upload").html((results.upload / 1000000).toFixed(2) + "<small> Mbps</small>");
-    	$("#speedtest-isp").html(results.client.isp);
+    	$("#speedtest-ping").html(results.ping.latency.toFixed(2) + "<small> ms</small>");
+    	$("#speedtest-download").html((results.download.bandwidth / 125000).toFixed(2) + "<small> Mbps</small>");
+    	$("#speedtest-upload").html((results.upload.bandwidth / 125000).toFixed(2) + "<small> Mbps</small>");
+    	$("#speedtest-upload").html((results.upload.bandwidth / 125000).toFixed(2) + "<small> Mbps</small>");
+    	$("#speedtest-isp").html(results.isp);
     	$("#speedtest-host").html(results.server.name);
     } else {
     	$("#speedtest-ts").html("Speedtest failed");
