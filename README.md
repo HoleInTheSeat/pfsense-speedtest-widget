@@ -6,6 +6,7 @@ Tested on Community Version community Version 2.6.0 and Pfsense+ 23.01
 ## Remove and Old speedtest CLI's
 ```
 # Example how to remove conflicting or old versions using pkg
+# pkg info | grep -i speed
 # pkg remove speedtest
 # pkg remove pkg remove -y py38-speedtest-cli-2.1.3
 ```
