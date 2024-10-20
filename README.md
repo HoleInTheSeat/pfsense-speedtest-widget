@@ -16,7 +16,7 @@ Tested on Community Version community Version 2.6.0 and Pfsense+ 23.01
 pkg update && pkg install -g libidn2 ca_root_nss
 ```
 ```
-freebsd-version && bsdver=$(freebsd-version | cut -c1-2) && if [ "$bsdver" = "14" ]; then echo "Installing for BSD $bsdver"; pkg add --force "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-freebsd13-x86_64.pkg"; fi && if [ "$bsdver" = "13" ]; then echo "Installing for BSD $bsdver"; pkg add "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-freebsd13-x86_64.pkg"; fi && if [ "$bsdver" = "12" ]; then echo "Installing for BSD $bsdver"; pkg add "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-freebsd12-x86_64.pkg"; fi 
+bsdver=$(freebsd-version | cut -d. -f1); [ "$bsdver" -eq 12 -o "$bsdver" -eq 13 ] && echo "Installing for BSD $bsdver"; pkg add "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-freebsd$bsdver-x86_64.pkg" || (echo "Installing for BSD $bsdver"; pkg add --force "https://install.speedtest.net/app/cli/ookla-speedtest-1.2.0-freebsd13-x86_64.pkg")
 ```
 
 ## Fetch the Widget File
